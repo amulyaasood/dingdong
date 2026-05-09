@@ -8,12 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class FoodServiceImpl implements FoodService {
     @Autowired
     FileUploadService fileUploadService;
     @Autowired
     FoodRepo  foodRepo;
+
+    @Override
+    public List<FoodResponse> getFoods() {
+        List<FoodEntity>  foodEntities = foodRepo.findAll();
+       return foodEntities.stream().map(object -> getFoodResponse(object)).collect(Collectors.toList());
+    }
 
     @Override
     public FoodResponse addFood(FoodRequest req , MultipartFile file){

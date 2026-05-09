@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/foods")
 public class FoodController {
@@ -30,6 +32,10 @@ public class FoodController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid food JSON");
         }
         return foodService.addFood(foodRequest,image);
+    }
+    @GetMapping
+    public List<FoodResponse> getFoods(){
+        return foodService.getFoods();
     }
 
 }
