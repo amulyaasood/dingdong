@@ -2,6 +2,7 @@ package in.amulya.dingdong.service;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import in.amulya.dingdong.exceptions.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,7 +23,7 @@ public class FileUploadService {
             );
             return result.get("url").toString();
         } catch (Exception e) {
-            throw new RuntimeException("Upload failed");
+            throw new FileUploadException("Upload failed" , e);
         }
     }
 }
