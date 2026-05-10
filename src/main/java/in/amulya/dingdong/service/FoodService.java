@@ -11,5 +11,13 @@ import java.util.List;
 @Service
 public interface FoodService {
     FoodResponse addFood(FoodRequest request , MultipartFile file);
+
     List<FoodResponse> getFoods();
+
+    FoodResponse getFoodById(String id);
+
+    boolean deleteFile(String filename);
+
+    void deleteFood(String id);
+
 }

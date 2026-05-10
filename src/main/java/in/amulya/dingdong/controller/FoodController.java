@@ -38,4 +38,10 @@ public class FoodController {
         return foodService.getFoods();
     }
 
+    @GetMapping("/{id}")
+    public FoodResponse getFoodById(@PathVariable String id){return foodService.getFoodById(id);}
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteFoodById(@PathVariable String id){foodService.deleteFood(id);}
 }

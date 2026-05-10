@@ -20,4 +20,5 @@ public class FoodEntity {
     private String category;
     private double price;
     private String imageUrl;
+//    private String imageId;
 }

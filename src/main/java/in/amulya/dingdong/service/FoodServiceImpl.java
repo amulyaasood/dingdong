@@ -25,6 +25,23 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
+    public FoodResponse getFoodById(String id) {
+        FoodEntity e= foodRepo.findById(id).orElseThrow(()->new RuntimeException("no such id"));
+        return getFoodResponse(e);
+    }
+
+    @Override
+    public boolean deleteFile(String filename) {
+        return false;
+    }
+
+    @Override
+    public void deleteFood(String id) {
+        FoodResponse response = getFoodById(id);
+        foodRepo.deleteById(response.getId());
+    }
+
+    @Override
     public FoodResponse addFood(FoodRequest req , MultipartFile file){
         FoodEntity foodEntity = getFoodEntity(req);
         String imageURL = fileUploadService.upload(file);
